@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café 8 - Heerlijke Hapjes & Koffie</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js" defer ></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Café 8</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#menu" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">Over Ons</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Welkom bij Café 8</h1>
+            <p class="hero-subtitle">Ontdek heerlijke hapjes en de beste koffie in een gezellige sfeer</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">Bekijk Menu</a>
+                <a href="#contact" class="btn btn-secondary">Reserveren</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-placeholder">
+                <i class="fas fa-coffee"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Heerlijke Hapjes</h3>
+                    <p>Geniet van onze verse en smakelijke gerechten, perfect voor elke gelegenheid.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <h3>Premium Koffie</h3>
+                    <p>Ontdek onze uitgebreide selectie koffies, inclusief de nieuwste hype koffies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Gezellige Sfeer</h3>
+                    <p>Perfect voor studeren, ontmoetingen met vrienden of een luxe brunch met collega's.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Onze Menu</h2>
+            <div class="menu-tabs">
+                <button class="tab-btn active" data-tab="coffee">Koffie</button>
+                <button class="tab-btn" data-tab="food">Eten</button>
+                <button class="tab-btn" data-tab="drinks">Dranken</button>
+            </div>
+            
+            <div class="menu-content">
+                <!-- Coffee Menu -->
+                <div class="menu-tab active" id="coffee">
+                    <div class="menu-grid">
+                        <div class="menu-item">
+                            <h4>Espresso</h4>
+                            <p>Pure koffie, intens en vol van smaak</p>
+                            <span class="price">€2.50</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Cappuccino</h4>
+                            <p>Perfecte balans van espresso, gestoomde melk en melkschuim</p>
+                            <span class="price">€3.50</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Latte Macchiato</h4>
+                            <p>Gelaagde koffie met romige melk</p>
+                            <span class="price">€4.00</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Flat White</h4>
+                            <p>Australische stijl met microfoam</p>
+                            <span class="price">€3.80</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Cold Brew</h4>
+                            <p>Lange extractie voor een zachte, zoete smaak</p>
+                            <span class="price">€4.50</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Nitro Cold Brew</h4>
+                            <p>Met stikstof geïnfuseerd voor een romige textuur</p>
+                            <span class="price">€5.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Menu -->
+                <div class="menu-tab" id="food">
+                    <div class="menu-grid">
+                        <div class="menu-item">
+                            <h4>Avocado Toast</h4>
+                            <p>Verse avocado op zuurdesem brood met kruiden</p>
+                            <span class="price">€8.50</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Eggs Benedict</h4>
+                            <p>Gepocheerde eieren met hollandaise saus</p>
+                            <span class="price">€12.00</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Quiche Lorraine</h4>
+                            <p>Huisgemaakte quiche met spek en kaas</p>
+                            <span class="price">€9.50</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Club Sandwich</h4>
+                            <p>Drie lagen met kip, bacon en verse groenten</p>
+                            <span class="price">€11.00</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Caesar Salad</h4>
+                            <p>Verse sla met parmezaan en croutons</p>
+                            <span class="price">€10.50</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Pasta Carbonara</h4>
+                            <p>Klassieke pasta met ei, kaas en pancetta</p>
+                            <span class="price">€13.50</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drinks Menu -->
+                <div class="menu-tab" id="drinks">
+                    <div class="menu-grid">
+                        <div class="menu-item">
+                            <h4>Fresh Orange Juice</h4>
+                            <p>Vers geperst sinaasappelsap</p>
+                            <span class="price">€4.00</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Green Smoothie</h4>
+                            <p>Spinazie, banaan en appel</p>
+                            <span class="price">€5.50</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Hot Chocolate</h4>
+                            <p>Romige warme chocolademelk</p>
+                            <span class="price">€4.50</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Chai Latte</h4>
+                            <p>Kruidige thee met gestoomde melk</p>
+                            <span class="price">€4.00</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Lemonade</h4>
+                            <p>Huisgemaakte citroenlimonade</p>
+                            <span class="price">€3.50</span>
+                        </div>
+                        <div class="menu-item">
+                            <h4>Sparkling Water</h4>
+                            <p>Bruisend water met citroen</p>
+                            <span class="price">€2.50</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Over Café 8</h2>
+                    <p>Welkom bij Café 8, waar gezelligheid en kwaliteit samenkomen. Onze nieuwe locatie biedt een warme, uitnodigende sfeer waar je kunt genieten van heerlijke hapjes en de beste koffie.</p>
+                    <p>Of je nu komt om te studeren, tijd door te brengen met vrienden, of een luxe brunch te hebben met collega's - bij ons vind je altijd een plek die bij je past.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-wifi"></i>
+                            <span>Gratis WiFi</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-plug"></i>
+                            <span>Stopcontacten</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-music"></i>
+                            <span>Gezellige Muziek</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="about-placeholder">
+                        <i class="fas fa-store"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Contact & Openingstijden</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Adres</h4>
+                            <p>Café 8<br>Hoofdstraat 123<br>1234 AB Amsterdam</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telefoon</h4>
+                            <p>+31 (0)20 123 4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@cafe8.nl</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Openingstijden</h4>
+                            <p>Maandag - Vrijdag: 7:00 - 18:00<br>
+                            Zaterdag - Zondag: 8:00 - 19:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Reserveren</h3>
+                    <form id="reservationForm">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Naam" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="phone" placeholder="Telefoon">
+                        </div>
+                        <div class="form-group">
+                            <input type="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="time" name="time" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="guests" placeholder="Aantal personen" min="1" max="20" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Speciale wensen" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Reserveren</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Café 8</h3>
+                    <p>Waar gezelligheid en kwaliteit samenkomen.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="#menu">Koffie</a></li>
+                        <li><a href="#menu">Eten</a></li>
+                        <li><a href="#menu">Dranken</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="#contact">Reserveren</a></li>
+                        <li><a href="#contact">Openingstijden</a></li>
+                        <li><a href="#contact">Locatie</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Café 8. Alle rechten voorbehouden.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+</body>
+</html>

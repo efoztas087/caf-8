@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmailJS Test - Café 8</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        button { background: #8B4513; color: white; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #A0522D; }
+        .debug { background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 20px 0; }
+        .success { background: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin: 10px 0; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>EmailJS Test - Café 8</h1>
+    
+    <div class="debug">
+        <h3>Debug Info:</h3>
+        <p><strong>Public Key:</strong> <span id="publicKey">zB-yMHoPbHKZ4M2BF</span></p>
+        <p><strong>EmailJS Loaded:</strong> <span id="emailjsStatus">Checking...</span></p>
+    </div>
+
+    <form id="testForm">
+        <div class="form-group">
+            <label for="serviceId">Service ID:</label>
+            <input type="text" id="serviceId" placeholder="service_xxxxxxx" value="service_e62dtlm" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="templateId">Template ID:</label>
+            <input type="text" id="templateId" placeholder="template_xxxxxxx" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="testEmail">Test Email:</label>
+            <input type="email" id="testEmail" placeholder="jouw@email.nl" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="testName">Test Naam:</label>
+            <input type="text" id="testName" placeholder="Test Naam" required>
+        </div>
+        
+        <button type="submit">Test Email Versturen</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("zB-yMHoPbHKZ4M2BF");
+            document.getElementById('emailjsStatus').textContent = 'Loaded!';
+        })();
+
+        // Test form
+        document.getElementById('testForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const serviceId = document.getElementById('serviceId').value;
+            const templateId = document.getElementById('templateId').value;
+            const testEmail = document.getElementById('testEmail').value;
+            const testName = document.getElementById('testName').value;
+            
+            const resultDiv = document.getElementById('result');
+            
+            if (!serviceId || !templateId || !testEmail || !testName) {
+                resultDiv.innerHTML = '<div class="error">Vul alle velden in!</div>';
+                return;
+            }
+            
+            const templateParams = {
+                to_name: testName,
+                to_email: testEmail,
+                message: "Dit is een test email van Café 8!"
+            };
+            
+            resultDiv.innerHTML = '<div class="success">Email wordt verstuurd...</div>';
+            
+            emailjs.send(serviceId, templateId, templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response);
+                    resultDiv.innerHTML = '<div class="success">✅ Email succesvol verstuurd! Check je inbox.</div>';
+                })
+                .catch(function(error) {
+                    console.log('FAILED...', error);
+                    resultDiv.innerHTML = '<div class="error">❌ Fout bij versturen: ' + error.text + '</div>';
+                });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café 8 - Reservering Test</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        button { background: #8B4513; color: white; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #A0522D; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .success { background: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin: 10px 0; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin: 10px 0; }
+        .info { background: #d1ecf1; color: #0c5460; padding: 10px; border-radius: 5px; margin: 10px 0; }
+        .config { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>☕ Café 8 - Reservering Systeem Test</h1>
+    
+    <div class="config">
+        <h3>🔧 Configuratie</h3>
+        <p><strong>Service ID:</strong> service_e62dtlm</p>
+        <p><strong>Template Café 8:</strong> template_ugll2yu</p>
+        <p><strong>Template Klant:</strong> template_liyqa0g</p>
+        <p><strong>Public Key:</strong> zB-yMHoPbHKZ4M2BF</p>
+    </div>
+
+    <form id="testReservationForm">
+        <div class="form-group">
+            <label for="name">Naam:</label>
+            <input type="text" id="name" name="name" value="Test Gebruiker" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="jouw@email.nl" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">Telefoon:</label>
+            <input type="tel" id="phone" name="phone" value="+31 6 12345678">
+        </div>
+        
+        <div class="form-group">
+            <label for="date">Datum:</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="time">Tijd:</label>
+            <input type="time" id="time" name="time" value="19:00" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="guests">Aantal personen:</label>
+            <select id="guests" name="guests" required>
+                <option value="1">1 persoon</option>
+                <option value="2" selected>2 personen</option>
+                <option value="3">3 personen</option>
+                <option value="4">4 personen</option>
+                <option value="5">5 personen</option>
+                <option value="6">6 personen</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="message">Speciale wensen:</label>
+            <textarea id="message" name="message" rows="3" placeholder="Allergieën, voorkeuren, etc.">Test reservering voor Café 8</textarea>
+        </div>
+        
+        <button type="submit">📧 Test Volledige Reservering</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("zB-yMHoPbHKZ4M2BF");
+        })();
+
+        // Set default date to tomorrow
+        document.getElementById('date').value = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+
+        // Test form
+        document.getElementById('testReservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = this.querySelector('input[name="name"]').value;
+            const email = this.querySelector('input[name="email"]').value;
+            const phone = this.querySelector('input[name="phone"]').value;
+            const date = this.querySelector('input[name="date"]').value;
+            const time = this.querySelector('input[name="time"]').value;
+            const guests = this.querySelector('select[name="guests"]').value;
+            const message = this.querySelector('textarea[name="message"]').value;
+            
+            const resultDiv = document.getElementById('result');
+            
+            if (!name || !email || !date || !time || !guests) {
+                resultDiv.innerHTML = '<div class="error">❌ Vul alle verplichte velden in!</div>';
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '📤 Versturen...';
+            submitBtn.disabled = true;
+            
+            resultDiv.innerHTML = '<div class="info">📤 Reservering wordt verstuurd...</div>';
+            
+            // Prepare email template parameters
+            const templateParams = {
+                to_name: name,
+                to_email: email,
+                from_name: "Café 8",
+                from_email: "info@cafe8.nl",
+                reservation_date: date,
+                reservation_time: time,
+                number_of_guests: guests,
+                phone_number: phone,
+                special_requests: message || "Geen speciale wensen",
+                reply_to: email
+            };
+            
+            // Send email to Café 8 (notification)
+            emailjs.send('service_e62dtlm', 'template_ugll2yu', templateParams)
+                .then(function(response) {
+                    console.log('Email naar Café 8 verstuurd!', response.status, response.text);
+                    
+                    // Send confirmation email to customer
+                    const customerTemplateParams = {
+                        to_name: name,
+                        to_email: email,
+                        reservation_date: date,
+                        reservation_time: time,
+                        number_of_guests: guests,
+                        special_requests: message || "Geen speciale wensen"
+                    };
+                    
+                    // Send confirmation email to customer
+                    return emailjs.send('service_e62dtlm', 'template_liyqa0g', customerTemplateParams);
+                })
+                .then(function(response) {
+                    console.log('Bevestigingsemail naar klant verstuurd!', response.status, response.text);
+                    resultDiv.innerHTML = '<div class="success">✅ Reservering succesvol verstuurd!<br><br>📧 Café 8 heeft een notificatie ontvangen<br>📧 Je ontvangt een bevestigingsemail</div>';
+                    
+                    // Reset form
+                    document.getElementById('testReservationForm').reset();
+                    document.getElementById('date').value = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+                    document.getElementById('time').value = '19:00';
+                })
+                .catch(function(error) {
+                    console.log('FAILED...', error);
+                    let errorMessage = '❌ Fout bij versturen: ';
+                    
+                    if (error.text) {
+                        errorMessage += error.text;
+                    } else if (error.message) {
+                        errorMessage += error.message;
+                    } else {
+                        errorMessage += 'Onbekende fout';
+                    }
+                    
+                    resultDiv.innerHTML = '<div class="error">' + errorMessage + '</div>';
+                })
+                .finally(function() {
+                    // Reset button state
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
+        });
+    </script>
+</body>
+</html>
+
+
