@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café8</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #fafafa;
+      color: #201020;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header smaller */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 40px;   /* kleiner dan 24px 60px */
+      font-weight: 600;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    header div {
+      font-size: 1em;
+      font-weight: 700;
+    }
+    header nav a {
+      margin-left: 20px;
+      font-weight: 500;
+      font-size: 0.9em; /* kleiner font */
+    }
+
+    /* Section titles */
+    section h2 {
+      font-size: 2.2em;
+      margin-bottom: 30px;
+      font-weight: 700;
+      color: #201020;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      padding: 60px 40px; /* omhoog gehaald (was 80px 60px) */
+    }
+    .hero img {
+      width: 100%;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+    .hero-text {
+      text-align: center;
+    }
+    .hero-text h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .hero-text p {
+      font-size: 1.4em;
+      margin: 15px 0;
+      font-weight: 500;
+    }
+    .hero-text img {
+      margin: 20px 0;
+      border-radius: 6px;
+    }
+    .hero-text .links a {
+      margin: 0 12px;
+      font-weight: 600;
+      font-size: 0.9em;
+    }
+
+    /* Over ons */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      padding: 70px 40px; /* iets minder padding */
+      border-top: 1px solid #e0e0e0;
+    }
+    .about img {
+      width: 100%;
+      border-radius: 6px;
+    }
+    .about-text h2 {
+      font-size: 2.2em;
+      margin-bottom: 15px;
+    }
+    .about-text p {
+      margin-bottom: 20px;
+      font-size: 1.05em;
+      color: #444;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #201020;
+      color: #fff;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9em;
+    }
+
+    /* Onze Producten */
+    .producten {
+      padding: 70px 40px; /* omhoog gehaald */
+      border-top: 1px solid #e0e0e0;
+    }
+    .producten-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    .producten img {
+      width: 100%;
+      border-radius: 6px;
+    }
+    .producten-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    .producten-info div {
+      border-left: 1px solid #ccc;
+      padding-left: 20px;
+    }
+    .producten-info h3 {
+      margin-bottom: 6px;
+      font-size: 1.1em;
+      font-weight: 600;
+    }
+    .producten-info p {
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    /* Volg ons */
+    .volg {
+      padding: 70px 40px;
+      border-top: 1px solid #e0e0e0;
+      background: #fff;
+    }
+    .volg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    .volg-grid img {
+      width: 100%;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+    .volg .meer {
+      display: block;
+      margin: 30px auto 0;
+      padding: 10px 22px;
+      border: 1px solid #201020;
+      border-radius: 4px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9em;
+    }
+
+    /* Footer */
+    footer {
+      padding: 60px 40px; /* compacter */
+      border-top: 1px solid #e0e0e0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+    footer h3 {
+      font-size: 1.8em;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    footer .contact p, 
+    footer .contact a {
+      margin-bottom: 10px;
+      display: block;
+      font-size: 0.9em;
+      color: #333;
+    }
+    .socials a {
+      margin-right: 15px;
+      font-size: 1em;
+    }
+    .legal {
+      margin-top: 25px;
+      font-size: 0.8em;
+      color: #666;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero, .about, .producten-grid, footer {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .producten-info {
+        grid-template-columns: 1fr;
+        border-left: none;
+      }
+      .producten-info div {
+        border-left: none;
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div>Café8</div>
+    <nav>
+      <a href="menu2.html">Menu</a>
+      <a href="#about">Over ons</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <img src="https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=800" alt="Cafe interieur">
+    <div class="hero-text">
+      <h1>Café8</h1>
+      <p>Ontdek</p>
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400" alt="Latte art">
+      <div class="links">
+        <a href="menu2.html">Bekijk Menu</a> | 
+        <a href="#reserve">Reserveer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Over Ons -->
+  <section class="about" id="about">
+    <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=600" alt="Over ons tafel koffie">
+    <div class="about-text">
+      <h2>Over Ons</h2>
+      <p>
+        Café8 is een kleurrijk en uitnodigend café dat bekend staat om zijn gezellige sfeer. 
+        Wij bieden een verscheidenheid aan trendy koffies en huisgemaakte gebakjes. 
+        Onze passie ligt in het creëren van een warme en gastvrije omgeving waar gasten 
+        kunnen genieten van heerlijke lekkernijen en ontspannen momenten. 
+        Kom langs en ervaar zelf de unieke ambiance van Café8.
+      </p>
+      <a href="#" class="btn">Lees Meer</a>
+    </div>
+  </section>
+
+  <!-- Onze Producten -->
+  <section class="producten">
+    <h2>Onze Producten</h2>
+    <div class="producten-grid">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800" alt="Producten cafe">
+      <div class="producten-info">
+        <div>
+          <h3>Koffies</h3>
+          <p>Trendy Variëteiten</p>
+          <h3>Gebakjes</h3>
+          <p>Huisgemaakte Heerlijkheden</p>
+        </div>
+        <div>
+          <h3>Sappen</h3>
+          <p>Verse Sappen</p>
+          <h3>Ontbijt</h3>
+          <p>Gezonde Keuzes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Volg Ons -->
+  <section class="volg">
+    <h2>Volg Ons</h2>
+    <div class="volg-grid">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400" alt="Vrolijke klant">
+      <img src="https://images.unsplash.com/photo-1502920917128-1aa500764b8a?w=400" alt="Reis inspiratie">
+      <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=400" alt="Groen blad">
+      <img src="https://images.unsplash.com/photo-1596464716128-9ef0c1e77f2d?w=400" alt="Product foto">
+    </div>
+    <a href="#" class="meer">Meer laden</a>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div>
+      <h3>Contacteer Ons Vandaag Nog</h3>
+      <p>Café8</p>
+    </div>
+    <div class="contact">
+      <p>020-1234567</p>
+      <a href="mailto:info@mijnwebsite.nl">info@mijnwebsite.nl</a>
+      <p>Kruideniersweg 12, 5571 PG Amsterdam</p>
+      <div class="socials">
+        <a href="#">FB</a>
+        <a href="#">IG</a>
+        <a href="#">X</a>
+        <a href="#">TikTok</a>
+      </div>
+      <div class="legal">
+        © 2035 by Café8. Alle rechten voorbehouden.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café8</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: #fafafa;
+      color: #201020;
+    }
+
+    /* Navbar */
+  .navbar {
+  margin-right: 50rem; /* alles 20px naar rechts */
+  margin-right: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+}
+
+.navbar .logo {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #201020;
+  margin-left: 50px;
+  padding-left: 50px;
+}
+
+.navbar nav {
+  margin-left: 30px; /* ruimte tussen logo en menu */
+}
+
+.navbar nav a {
+   margin-left: 20px;
+  text-decoration: none;
+  color: #201020;
+  font-weight: 500;
+}
+
+    .navbar nav a:hover {
+      color: #27c43c;
+    }
+    .navbar nav a.active {
+      color: #27c43c;
+      font-weight: 700;
+    }
+
+    /* Content spacing below navbar */
+    .content {
+      padding-top: 100px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: left;
+      font-size: 2.2em;
+      margin: 8px 0 30px;
+      font-weight: 700;
+      padding-left: 40px;
+    }
+
+    /* Tabs */
+    .menu-tabs {
+      text-align: left;
+      margin-bottom: 30px;
+      padding-left: 20px;
+    }
+    .menu-tabs button {
+      margin-right: 20px;
+      background: none;
+      border: none;
+      margin: 0 15px;
+      font-size: 1em;
+      font-weight: 700;
+      cursor: pointer;
+      color: #444;
+      position: relative;
+    }
+    .menu-tabs button.active {
+      color: #000;
+    }
+    .menu-tabs button.active::after {
+      content: '';
+      display: block;
+      height: 3px;
+      background: #000000;
+      margin-top: 6px;
+    }
+
+    /* Grid cards */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px 60px;
+    }
+    .menu-card {
+      background: #fff;
+      border: 2px solid #eee;
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .menu-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .menu-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .menu-info {
+      padding: 15px;
+    }
+    .menu-label {
+      display: inline-block;
+      background: #27c43c;
+      color: #fff;
+      font-size: 0.7em;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 3px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .menu-info h3 {
+      margin: 0 0 8px;
+      font-size: 1.1em;
+      font-weight: 700;
+    }
+    .menu-info p {
+      margin: 0 0 12px;
+      font-size: 0.9em;
+      color: #555;
+    }
+    .price {
+      font-weight: 700;
+      font-size: 1em;
+      color: #201020;
+    }
+
+    .menu-section {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  display: none; /* standaard verborgen */
+}
+
+.menu-section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+      
+    @media (max-width: 700px) {
+  .navbar {
+      margin-left: 20px; /* alles 20px naar rechts */
+      margin-right: 20px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  .navbar nav {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+  .navbar nav a {
+      margin: 0 10px 10px 0;
+      font-size: 0.9rem;
+      padding-right: 1px;
+    }
+  }
+
+    /* Responsive grid */
+    @media (min-width: 700px) {
+      .menu-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (min-width: 1000px) {
+      .menu-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">Café8</div>
+    <nav>
+      <a href="menu1.html">Home</a>
+      <a href="menu2.html" class="active">Menu</a>
+      <a href="store.html">Store</a>
+      <a href="about.html">About us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Content -->
+  <div class="content">
+    <h1>MENU</h1>
+
+    <!-- Tabs -->
+    <div class="menu-tabs">
+      <button class="active" onclick="showTab('hot')">HOT DRINKS</button>
+      <button onclick="showTab('cold')">COLD DRINKS</button>
+      <button onclick="showTab('foods')">FOODS</button>
+    </div>
+
+    <!-- Hot Drinks -->
+    <section id="hot" class="menu-section">
+      <div class="menu-grid">
+        <div class="menu-card">
+          <img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=600" alt="Espresso">
+          <div class="menu-info">
+            <span class="menu-label">Black</span>
+            <h3>Espresso</h3>
+            <p>Sterk shot pure koffie</p>
+            <div class="price">€2,50</div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600" alt="Cappuccino">
+          <div class="menu-info">
+            <span class="menu-label">Milk</span>
+            <h3>Cappuccino</h3>
+            <p>Romige schuimlaag, klassiek</p>
+            <div class="price">€3,50</div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600" alt="Latte Macchiato">
+          <div class="menu-info">
+            <span class="menu-label">Milk</span>
+            <h3>Latte Macchiato</h3>
+            <p>Zacht met warme melk</p>
+            <div class="price">€3,80</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cold Drinks -->
+    <section id="cold" class="menu-section" style="display:none;">
+      <div class="menu-grid">
+        <div class="menu-card">
+          <img src="https://images.unsplash.com/photo-1527168027773-0cc890c4f46e?w=600" alt="Iced Coffee">
+          <div class="menu-info">
+            <span class="menu-label">Cold</span>
+            <h3>Iced Coffee</h3>
+            <p>Verfrissend met siroop</p>
+            <div class="price">€3,80</div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img src="https://images.unsplash.com/photo-1627662169861-1b665fb692e8?w=600" alt="Iced Matcha">
+          <div class="menu-info">
+            <span class="menu-label">Matcha</span>
+            <h3>Iced Matcha Latte</h3>
+            <p>Groene energie boost</p>
+            <div class="price">€4,20</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Foods -->
+    <section id="foods" class="menu-section" style="display:none;">
+      <div class="menu-grid">
+        <div class="menu-card">
+          <img src="https://images.unsplash.com/photo-1587815070418-9479b5a2cbea?w=600" alt="Red Velvet">
+          <div class="menu-info">
+            <span class="menu-label">Cake</span>
+            <h3>Red Velvet Cake</h3>
+            <p>Met roomkaasglazuur</p>
+            <div class="price">€4,50</div>
+          </div>
+        </div>
+        <div class="menu-card">
+          <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=600" alt="Cinnamon Roll">
+          <div class="menu-info">
+            <span class="menu-label">Pastry</span>
+            <h3>Cinnamon Roll</h3>
+            <p>Warm & geglazuurd</p>
+            <div class="price">€3,80</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.menu-section').forEach(s => s.style.display = 'none');
+      document.querySelectorAll('.menu-tabs button').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).style.display = 'block';
+      event.target.classList.add('active');
+    }
+    function showTab(tabId) {
+    // alles verbergen
+    document.querySelectorAll('.menu-section').forEach(s => {
+      s.classList.remove('active');
+      s.style.display = 'none';
+    });
+
+    document.querySelectorAll('.menu-tabs button').forEach(b => b.classList.remove('active'));
+
+    // toon geselecteerde
+    const section = document.getElementById(tabId);
+    section.style.display = 'block';
+    setTimeout(() => section.classList.add('active'), 10);
+
+    event.target.classList.add('active');
+  }
+  </script>
+
+</body>
+</html>
